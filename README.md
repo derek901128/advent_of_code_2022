@@ -18,12 +18,12 @@ Day2:
 - I like Day2 quite a bit, because it inspires me to think proactively in terms of relations when coming up with a SQL-esque solution. Normally, using SQL means working with relational databases, things are in relations/tables by default, there's no need for me to think. But coding challenges are not databases, all the input are not relations by default, it's up to me to think relationally and break things up in terms of relations, rather than procedures. So instead of resorting to if-then-else kind of imperative logic, I set up ctes and joins. Almost like switch statements, but better (?).
 
 Day3: 
-- Finally get to explore some of Duckdb's syntactical sugar, like list_distinct, list_concat, list_transform, etc, when trying to Honestly I'm not as impressed as I thought I would be, mainly because I don't think they make better solution, they just lead to a differen solution, which, in this case, is too programmatic for my taste.
+- Finally get to explore some of Duckdb's syntactical sugar, like list_distinct, list_concat, list_transform, etc, when trying to find the common type between the compartments. Honestly I'm not as impressed as I thought I would be. I don't think they make better solution, they just lead to a differen solution, which, in this case, is too programmatic for my taste.
 - While Oracle doesn't have these supposedly modern methods, it has "connect by level..", which is a very handy way to write recursive query. With that, I come up with a beautifully relational way to find out the common type of the two compartments: with raw input as the base cte, I use the connect by + substr(compartment, level, 1) to loop through each letter of each compartment, turning them into two columns of letters, intersecting them to find the common letter that exists in both columns as the common type, while cross applying it to the base cte on row_no, meaning for each row the above process will be carried out. Beautiful stuff.
 
 Day5: 
-- Huge challenge. First, figuring out to set up the appropriate table shape for the instructions and crates require a lot of foreward thinking. Second, the problem of keeing track of the changing states of the crates is very tircky without the help of variables and loop construct. I'm forced to think recursively. The solution is perhaps too long, but it's a milestone for me.
-- Again, Duckdb doesn't nessarily product better solution, despite all its modern features and data types.
+- Huge challenge. First, figuring out how to set up the appropriate table shape for both the instructions and the crates require a lot of forward thinking. Second, the problem of keeing track of the changing states of the crates is very tircky without the help of variables and loop construct. That's why I'm forced to think recursively. The solution is perhaps too long, but it's certainly a milestone for me.
+- Again, Duckdb doesn't nessarily produce better solution, despite all its modern features and data types.
 
 
 
