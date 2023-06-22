@@ -27,7 +27,8 @@ Day5:
 
 Day6: 
 - Day6 is a breeze. Once again I use the connect by + sustr trick to break all lettes into rows, each letter for each row, adding row numbers to determine the position. Then I use the row numbers as a pivot, cross applying every 4 / 14 items to each row number with a range join (e.g. 1 gets 1, 2, 3, 4; 2 gets 2, 3, 4, 5). This way, every row number will get 4 / 14 items, and I can do a distinct count group by row number. The minimum row_no that has a count over 4 or 14 will be the group we're looking for. 
-- This is not the first solution I can think of. The first that comes to mind is match_recognize and lag. Both works for part1 of the challenge, but part2 shows just how tedious they can get, as I need to manually type out all inequality conditions. 
+- This is not the first solution I can think of. The first that comes to mind is match_recognize and lag. Both works for part1 of the challenge, but part2 shows just how tedious they can get, as I need to manually type out all inequality conditions.
+- Today, unlike any other day, I use Oracle first. With Duckdb, there's no need to ever drag that piece of input out of its room, a series of str_split -> list comprehension -> list_apply -> list_distinct -> list_position quickly finds out the group that contains enough distinct values. However, I don't really get the feeling of solving the problem with SQL, it's really procedural code wrapped inside SQL statements.
 
 
 
