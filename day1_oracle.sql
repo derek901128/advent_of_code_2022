@@ -16,37 +16,20 @@ with day1_input(calaries) as (
     select null from dual union all
     select 10000 from dual
 ),
-base as (
+grp as (
     select 
-        row_number() over(order by 1) as row_no,
-        calaries
+    	cal,
+    	nvl(max(nvl2(cal, 0, rownum)) over(order by rownum rows between unbounded preceding and 1 preceding), 0) as grp_no
     from
-        day1_input 
-),
-find_pattern as (
-    select 
-        m.*,
-        rank() over(order by m.total_calaries desc) as ranking
-    from
-        base
-    match_recognize(
-        order by 
-            row_no
-        measures 
-            sum(food.calaries) as total_calaries
-        one row per match 
-        pattern 
-            ( food{1, } )
-        define 
-            food as calaries is not null
-    ) m
+    	raw_input
 )
 select 
-    *
-from
-    find_pattern
-where
-    ranking <= 3
+    sum(cal) 
+from 
+    grp 
+group by 
+    grp_no 
 order by 
-    ranking
+    sum(cal) desc 
+fetch first 3 row only
 ;
